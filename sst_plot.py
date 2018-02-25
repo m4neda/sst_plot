@@ -45,13 +45,14 @@ def calculate_params_by_window(w):
 def main():
     w = 24
     input_path = 'input.csv'
+    target = 'RSRP'
 
     df = pd_read_csv(input_path)
 
     m, k, L = calculate_params_by_window(w)
 
     model = load_sst_model(w, m, k, L)
-    data = df.RSRP
+    data = df[target]
     results = sst_detect(model, data)
 
 
