@@ -27,9 +27,20 @@ def pd_read_csv(input_path):
     return df
 
 
+def load_sst_model(w, m=2, k=None, L=None):
+    return banpei.SST(w, m, k, L)
+
+
+def sst_detect(model, data):
+    return model.detect(data)
+
+
 def main():
     input_path = 'input.csv'
     df = pd_read_csv(input_path)
+    model = load_sst_model(w=24)
+    data = df.RSRP
+    results = sst_detect(model, data)
 
 
 if __name__ == '__main__':
